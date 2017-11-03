@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^v1/(?P<ruleset_name>[_0-9a-zA-Z\-]+)/definition', views.ruleset_definition, name="ruleset_definition"),
     url(r'^v1/(?P<ruleset_name>[_0-9a-zA-Z\-]+)/facts', views.ruleset_facts, name="ruleset_facts"),
     url(r'^v1/(?P<ruleset_name>[_0-9a-zA-Z\-]+)/events', views.ruleset_events, name="ruleset_events"),
+    url(r'^v1/ruleset/(?P<ruleset_name>[_0-9a-zA-Z\-]+)', views.ruleset_info, name="ruleset_info"),
 ]
