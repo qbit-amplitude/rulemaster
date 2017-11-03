@@ -10,6 +10,7 @@ django-filter==1.1.0
 djangorestframework==3.7.1
 durable-rules==0.33.120
 enum34==1.1.6
+gunicorn==19.7.1
 idna==2.6
 ipaddress==1.0.18
 kombu==4.1.0
@@ -18,6 +19,7 @@ mastercard-api-core==1.4.5
 mastercard-fraud-scoring==1.0.5
 mastercard-lost-stolen==1.0.5
 mastercard-merchant-identifier==1.0.5
+meld3==1.0.2
 pyasn1==0.3.7
 pycparser==2.18
 pyOpenSSL==17.3.0
@@ -25,6 +27,7 @@ pytz==2017.3
 redis==2.10.6
 requests==2.18.4
 six==1.11.0
+supervisor==3.2.0
 urllib3==1.22
 vine==1.1.4
 virtualenv==15.0.1
