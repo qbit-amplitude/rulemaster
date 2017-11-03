@@ -23,7 +23,7 @@ def ruleset_definition(request, ruleset_name):
         "type": "definition",
         "timestamp": datetime.datetime.now().isoformat()
     }
-    JsonResponse(resp)
+    return JsonResponse(resp)
 
 
 def ruleset_facts(request, ruleset_name):
@@ -32,7 +32,7 @@ def ruleset_facts(request, ruleset_name):
         "type": "facts",
         "timestamp": datetime.datetime.now().isoformat()
     }
-    JsonResponse(resp)
+    return JsonResponse(resp)
 
 
 def ruleset_events(request, ruleset_name):
@@ -41,4 +41,4 @@ def ruleset_events(request, ruleset_name):
         "type": "events",
         "timestamp": datetime.datetime.now().isoformat()
     }
-    JsonResponse(resp)
+    return JsonResponse(resp)
