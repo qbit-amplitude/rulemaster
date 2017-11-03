@@ -25,7 +25,11 @@ SECRET_KEY = ')1qw8hv#1_wzg#6bu9moisu@f&8a@fd7b6*g(-2ta$tv#^c*cx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "52.77.80.70",
+]
 
 
 # Application definition
@@ -119,3 +123,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Redis settings
+REDIS_HOST = "localhost"
+REDIS_PORT = "6379"
+REDIS_DB = 0
+
+# Celery settings
+CELERY_BROKER_URL = "redis://{}:{}/{}".format(REDIS_HOST, REDIS_PORT, REDIS_DB)
+# CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
+CELERY_TASK_RESULT_EXPIRES = 300
