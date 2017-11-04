@@ -102,13 +102,13 @@ def ruleset_definition(request, ruleset_name):
     url = '/'.join(['http://127.0.0.1:5000', ruleset_name, 'definition'])
     print description
     rule_engine_response = requests.post(url=url, data=description.encode('utf-8'))
-    print rule_engine_response.__dict__
+    print rule_engine_response.__dict__.get('status_code')
 
     # create response_body
     try:
         response_data = RESP_CODES.get(int(rule_engine_response.json()['outcome']))
     except:
-        response_data = rule_engine_response.__dict__
+        response_data = rule_engine_response.__dict__.get('status_code')
 
     resp = {
         "ruleset_name": ruleset_name,
