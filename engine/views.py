@@ -86,8 +86,8 @@ def ruleset_definition(request, ruleset_name):
             domain=domain,
             sub_domain=sub_domain,
             rule_description=encoded_description,
-            action=ruleset_define.get('ruleset_name').keys()[0].get('start').get('run','Not defined'),
-            condition=json.dumps(ruleset_define.get('ruleset_name').keys()[0].get('start')),
+            action=rule_name,
+            condition=json.dumps(ruleset_define)#.get('ruleset_name').keys()[0].get('start')),
         )
         rule_obj.save()
         RuleSet.objects.create(
