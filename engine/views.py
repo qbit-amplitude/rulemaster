@@ -5,6 +5,7 @@ import datetime
 import json
 import sqlite3
 import base64
+import uuid
 import requests
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -67,7 +68,7 @@ def ruleset_definition(request, ruleset_name):
     ruleset_define = json.loads(request.body.decode("utf-8"))
     description = json.dumps(ruleset_define)
     RuleSet.objects.create(
-        rule_set_id='',
+        rule_set_id=uuid.uuid1().hex,
         rule_set_name=ruleset_name,
         rule_set_description=description).save()
     ## set/update in RE
