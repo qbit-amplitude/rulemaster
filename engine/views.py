@@ -65,51 +65,25 @@ def ruleset_definition(request, ruleset_name):
     #
     org, domain, sub_domain = None, None, None
     ruleset_define = json.loads(request.body.decode("utf-8"))
-    condition_api = ruleset_define.get('condition_api',{})
-    api_name = condition_api.get('name', "")
-    api_id = condition_api.get("ID", {})
-    parameters = condition_api.get('params', {})
-    if parameters.get('domain'):
-        domain = parameters['domain']
-    if parameters.get('org'):
-        org = parameters['org']
-    if parameters.get('sub_domain'):
-        sub_domain = parameters['sub_domain']
-    description = json.dumps(ruleset_define)#.get('ruleset_name'))
-    encoded_description = base64.b64encode(bytes(description), 'utf-8')
-    rule_name = ruleset_name #ruleset_define.get('ruleset_name').keys()[0]
-
-    if not Rule.objects.filter(rule_description=encoded_description, rule_name=rule_name, org=org, domain=domain, sub_domain=sub_domain):
-        rule_obj = Rule.objects.create(
-            rule_name=rule_name,
-            org=org,
-            domain=domain,
-            sub_domain=sub_domain,
-            rule_description=encoded_description,
-            action=rule_name,
-            condition=json.dumps(ruleset_define)#.get('ruleset_name').keys()[0].get('start')),
-        )
-        rule_obj.save()
-        RuleSet.objects.create(
-            rule_id=rule_obj,
-            rule_set_name=ruleset_name,
-            rule_set_description=description,
-            org=org,
-            domain=domain,
-            sub_domain=sub_domain,
-            ).save()
+    description = json.dumps(ruleset_define)
+    RuleSet.objects.create(
+        rule_set_name=ruleset_name,
+        rule_set_description=description).save()
     ## set/update in RE
     url = '/'.join(['http://127.0.0.1:5000', ruleset_name, 'definition'])
     print description
-    rule_engine_response = requests.post(url=url, data=description.encode('utf-8'))
+    if description.get("condition_api"):
+        durable_rule = description.get("ruleset_name")
+    else
+        durable_rule = description
+    rule_engine_response = requests.post(url=url, data=durable_rule.encode('utf-8'))
     print rule_engine_response.__dict__.get('status_code')
-
+    print rule_engine_response.status_code
     # create response_body
     try:
         response_data = RESP_CODES.get(int(rule_engine_response.json()['outcome']))
     except:
         response_data = rule_engine_response.__dict__.get('status_code')
-
     resp = {
         "ruleset_name": ruleset_name,
         "type": "definition",
