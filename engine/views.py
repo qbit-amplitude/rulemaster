@@ -101,7 +101,7 @@ def ruleset_definition(request, ruleset_name):
     ## set/update in RE
     url = '/'.join(['http://127.0.0.1:5000', ruleset_name, 'definition'])
     print description
-    rule_engine_response = requests.post(url=url, json=description.encode('utf-8'))
+    rule_engine_response = requests.post(url=url, data=description.encode('utf-8'))
     print rule_engine_response
 
     # create response_body
