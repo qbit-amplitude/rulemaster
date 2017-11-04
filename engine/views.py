@@ -75,7 +75,7 @@ def ruleset_definition(request, ruleset_name):
         org = parameters['org']
     if parameters.get('sub_domain'):
         sub_domain = parameters['sub_domain']
-    description = json.dumps(ruleset_define.get('ruleset_name'))
+    description = json.dumps(ruleset_define)#.get('ruleset_name'))
     encoded_description = base64.b64encode(bytes(description), 'utf-8')
     rule_name = ruleset_name #ruleset_define.get('ruleset_name').keys()[0]
 
