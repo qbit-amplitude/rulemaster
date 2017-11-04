@@ -92,7 +92,7 @@ def ruleset_definition(request, ruleset_name):
         rule_obj.save()
         RuleSet.objects.create(
             rule_id=rule_obj,
-            rule_set_name=condition_api.get('name'),
+            rule_set_name=ruleset_name,
             rule_set_description=description,
             org=org,
             domain=domain,
