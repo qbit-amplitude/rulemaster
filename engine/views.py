@@ -69,12 +69,12 @@ def ruleset_definition(request, ruleset_name):
     description = json.dumps(ruleset_define)
     if not Rule.objects.filter(rule_description=description, rule_name=rule_name, org=org, domain=domain, sub_domain=sub_domain):
         rule_obj = Rule.objects.create(
-            rule_name=rule_name,
+            rule_name=ruleset_name,
             org=org,
             domain=domain,
             sub_domain=sub_domain,
-            rule_description=encoded_description,
-            action=rule_name,
+            rule_description=description,
+            action=ruleset_name,
             condition=json.dumps(ruleset_define)#.get('ruleset_name').keys()[0].get('start')),
         )
         rule_obj.save()
