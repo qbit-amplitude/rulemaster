@@ -100,7 +100,7 @@ def ruleset_definition(request, ruleset_name):
             ).save()
     ## set/update in RE
     url = '/'.join(['http://127.0.0.1:5000', ruleset_name, 'definition'])
-    rule_engine_response = request.post(url=url, json=description)
+    rule_engine_response = requests.post(url=url, json=description)
 
     # create response_body
     try:
@@ -122,7 +122,7 @@ def ruleset_facts(request, ruleset_name):
     fact_info = json.loads(request.body.decode("utf-8"))
     query_data = fact_info.get('query_data')
     url = '/'.join(['http://127.0.0.1:5000', ruleset_name, 'facts'])
-    response_data = request.post(url=url, json=query_data)
+    response_data = requests.post(url=url, json=query_data)
     resp = {
         "ruleset_name": ruleset_name,
         "type": "facts",
@@ -141,7 +141,7 @@ def ruleset_events(request, ruleset_name):
     #
     query_data = fact_info.get('query_data')
     url = '/'.join(['http://127.0.0.1:5000', ruleset_name, 'events'])
-    response_data = request.post(url=url, json=query_data)    
+    response_data = requests.post(url=url, json=query_data)    
     resp = {
         "ruleset_name": ruleset_name,
         "type": "events",
