@@ -10,7 +10,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from engine.tasks import health_check
 from engine.view_decorators import require_http_methods
-from engine import models
+from engine.models import Rule, RuleSet
 
 ## constants
 RESP_CODES = {
