@@ -40,7 +40,7 @@ class Rule(models.Model):
 
 class RuleSet(models.Model):
 	rule_set_id = models.CharField(primary_key=True, max_length=64)
-	rule_id = models.ForeignKey('Rule')
+	rule_id = models.ForeignKey('Rule', on_delete=models.CASCADE)
 	rule_set_name = models.CharField(max_length=64)
 	rule_set_description = models.TextField()
 	created_on = models.DateTimeField(editable=False)
@@ -61,7 +61,7 @@ class RuleSet(models.Model):
 			self.domain = 'payments'
 		if not self.sub_domain:
 			self.sub_domain = 'credits'
-			
+
 		return super(Rule, self).save(*args, **kwargs)
 
 
