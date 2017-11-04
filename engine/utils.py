@@ -1,6 +1,5 @@
 from engine.mastercard_api_demos import example_lost, example_score
 
-
 def generate_response_dict(http_status, success, response, data=None,
                            error=None):
     response_dict = {}
