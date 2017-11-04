@@ -74,7 +74,7 @@ def ruleset_definition(request, ruleset_name):
     print description
     if description.get("condition_api"):
         durable_rule = description.get("ruleset_name")
-    else
+    else:
         durable_rule = description
     rule_engine_response = requests.post(url=url, data=durable_rule.encode('utf-8'))
     print rule_engine_response.__dict__.get('status_code')
