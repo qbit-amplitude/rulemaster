@@ -67,6 +67,7 @@ def ruleset_definition(request, ruleset_name):
     ruleset_define = json.loads(request.body.decode("utf-8"))
     description = json.dumps(ruleset_define)
     RuleSet.objects.create(
+        rule_set_id=None,
         rule_set_name=ruleset_name,
         rule_set_description=description).save()
     ## set/update in RE
