@@ -142,7 +142,7 @@ def ruleset_events(request, ruleset_name):
     #
     # get_or_update django query
     #
-    query_data = fact_info.get('query_data')
+    query_data = event_info.get('query_data')
     url = '/'.join(['http://127.0.0.1:5000', ruleset_name, 'events'])
     response_data = requests.post(url=url, json=query_data)    
     resp = {
