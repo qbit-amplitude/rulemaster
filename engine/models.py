@@ -35,7 +35,7 @@ class Rule(models.Model):
 
 		self.modified_on = timezone.now()
 		self.version += 1
-		return super(Rule, self).save(*args, **kwargs)
+		return super(Rule, self).__init__(*args, **kwargs)
 
 
 class RuleSet(models.Model):
@@ -62,7 +62,7 @@ class RuleSet(models.Model):
 		if not self.sub_domain:
 			self.sub_domain = 'credits'
 
-		return super(Rule, self).save(*args, **kwargs)
+		return super(Rule, self).__init__(*args, **kwargs)
 
 
 
