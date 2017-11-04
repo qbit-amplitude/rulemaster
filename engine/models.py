@@ -13,7 +13,7 @@ class Rule(models.Model):
 	rule_name = models.CharField(max_length=64)
 	org = models.CharField(max_length=64)
 	domain = models.CharField(max_length=64)
-	sub_domain = rule_name = models.CharField(max_length=64)
+	sub_domain = models.CharField(max_length=64)
 	rule_description = models.TextField()
 	action = models.TextField()
 	condition = models.TextField()
@@ -47,7 +47,7 @@ class RuleSet(models.Model):
 	modified_on = models.DateTimeField(editable=False)
 	org = models.CharField(max_length=64)
 	domain = models.CharField(max_length=64)
-	sub_domain = rule_name = models.CharField(max_length=64)
+	sub_domain = models.CharField(max_length=64)
 
 	def save(self, *args, **kwargs):
 		if not self.rule_set_id:
