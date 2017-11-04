@@ -84,7 +84,7 @@ def ruleset_definition(request, ruleset_name):
             rule_set_description=description,
             org=org,
             domain=domain,
-            sub_domain=sub_domain,
+            sub_domain=sub_domain,).save()
 
     ## set/update in RE
     url = '/'.join(['http://127.0.0.1:5000', ruleset_name, 'definition'])
