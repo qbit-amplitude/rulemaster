@@ -65,10 +65,10 @@ def ruleset_definition(request, ruleset_name):
     #
     org, domain, sub_domain = None, None, None
     ruleset_define = json.loads(request.body.decode("utf-8"))
-    condition_api = ruleset_define.get('condition_api')
-    api_name = condition_api.get('name')
-    api_id = condition_api.get("ID")
-    parameters = condition_api.get('params')
+    condition_api = ruleset_define.get('condition_api',{})
+    api_name = condition_api.get('name', "")
+    api_id = condition_api.get("ID", {})
+    parameters = condition_api.get('params', {})
     if parameters.get('domain'):
         domain = parameters['domain']
     if parameters.get('org'):
