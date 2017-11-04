@@ -125,7 +125,7 @@ def ruleset_facts(request, ruleset_name):
     fact_info = json.loads(request.body.decode("utf-8"))
     query_data = fact_info.get('query_data')
     url = '/'.join(['http://127.0.0.1:5000', ruleset_name, 'facts'])
-    response_data = requests.post(url=url, json=query_data)
+    response_data = requests.post(url=url, json=query_data.encode('utf-8'))
     resp = {
         "ruleset_name": ruleset_name,
         "type": "facts",
@@ -144,12 +144,13 @@ def ruleset_events(request, ruleset_name):
     #
     query_data = event_info.get('query_data')
     url = '/'.join(['http://127.0.0.1:5000', ruleset_name, 'events'])
-    response_data = requests.post(url=url, json=query_data)    
+    response_data = requests.post(url=url, json=query_data.encode('utf-8'))
+    print response_data.json()
     resp = {
         "ruleset_name": ruleset_name,
         "type": "events",
         "timestamp": datetime.datetime.now().isoformat(),
-        "response_data": response_data
+        "response_data": response_data.json()
     }
     return JsonResponse(resp)
 
