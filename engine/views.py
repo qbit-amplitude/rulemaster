@@ -67,10 +67,25 @@ def ruleset_definition(request, ruleset_name):
     org, domain, sub_domain = None, None, None
     ruleset_define = json.loads(request.body.decode("utf-8"))
     description = json.dumps(ruleset_define)
-    RuleSet.objects.create(
-        rule_set_id=uuid.uuid1().hex,
-        rule_set_name=ruleset_name,
-        rule_set_description=description).save()
+    if not Rule.objects.filter(rule_description=description, rule_name=rule_name, org=org, domain=domain, sub_domain=sub_domain):
+        rule_obj = Rule.objects.create(
+            rule_name=rule_name,
+            org=org,
+            domain=domain,
+            sub_domain=sub_domain,
+            rule_description=encoded_description,
+            action=rule_name,
+            condition=json.dumps(ruleset_define)#.get('ruleset_name').keys()[0].get('start')),
+        )
+        rule_obj.save()
+        RuleSet.objects.create(
+            rule_id=rule_obj,
+            rule_set_name=ruleset_name,
+            rule_set_description=description,
+            org=org,
+            domain=domain,
+            sub_domain=sub_domain,
+
     ## set/update in RE
     url = '/'.join(['http://127.0.0.1:5000', ruleset_name, 'definition'])
     print description
